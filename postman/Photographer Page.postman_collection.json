@@ -1,0 +1,613 @@
+{
+	"info": {
+		"_postman_id": "4484befe-723c-4da3-be37-d90e27915efd",
+		"name": "Photographer Page",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29049247"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "SignIn",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jwtToken = pm.response.json().access_token;",
+									"",
+									"pm.environment.set('JWT_TOKEN', jwtToken);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"test@test.com\",\n    \"password\": \"test123@\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/auth/profile",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Test\",\n    \"password\": \"test123@\",\n    \"email\": \"test@test.com\",\n    \"cpf\": \"12345678900\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/users",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Leandro\",\n    \"password\": \"123456\",\n    \"email\": \"leandro@test.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/users",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Leandro\",\n    \"password\": \"123456\",\n    \"email\": \"leandro@test.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/users/leandro1@test.com",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"leandro1@test.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Leandro ewqewqew2q\",\n    \"password\": \"123456\",\n    \"email\": \"leandro@test.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/users/leandro1@test.com",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"leandro1@test.com"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Media",
+			"item": [
+				{
+					"name": "Get All",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/photos/10/1/all",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"photos",
+								"10",
+								"1",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\n    \"name\": \"photo 1\",\n    \"description\": \"show\",\n    \"filename\": \"photo_1\",\n    \"url\": \"http://localhost.com\",\n    \"isPublished\": true,\n    \"tags\": [\n        \"show\",\n        \"ensaio\"\n    ]\n}, {\n    \"name\": \"photo 2\",\n    \"description\": \"show\",\n    \"filename\": \"photo_1\",\n    \"url\": \"http://localhost.com\",\n    \"isPublished\": true,\n    \"tags\": [\n        \"show\",\n        \"ensaio\"\n    ]\n}, {\n    \"name\": \"photo 3\",\n    \"description\": \"show\",\n    \"filename\": \"photo_1\",\n    \"url\": \"http://localhost.com\",\n    \"isPublished\": true,\n    \"tags\": [\n        \"show\",\n        \"ensaio\"\n    ]\n}]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/photos/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"photos",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/photos/65d4fc46b340c2db681291b1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"photos",
+								"65d4fc46b340c2db681291b1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"AAEEEE\",\n    \"description\": \"show!2 ewq ewq\",\n    \"filename\": \"photo_1 ewq 3213213213213213213\",\n    \"driveLink\": \"http://localhost.com.us\",\n    \"isPublished\": false,\n    \"tags\": [\n        \"SHOW\"\n    ],\n    \"type\": \"video\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/photos/65df3e40cfa8d57b3a510083",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"photos",
+								"65df3e40cfa8d57b3a510083"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/photos/65d4fc46b340c2db681291b0",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"photos",
+								"65d4fc46b340c2db681291b0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Video",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/videos/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"videos",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\n    \"name\": \"video 1\",\n    \"description\": \"show\",\n    \"filename\": \"video_1\",\n    \"url\": \"http://localhost.com\",\n    \"isPublished\": true,\n    \"tags\": [\n        \"show\",\n        \"ensaio\"\n    ]\n}, {\n    \"name\": \"video 2\",\n    \"description\": \"show\",\n    \"filename\": \"video_1\",\n    \"url\": \"http://localhost.com\",\n    \"isPublished\": true,\n    \"tags\": [\n        \"show\",\n        \"ensaio\"\n    ]\n}, {\n    \"name\": \"video 3\",\n    \"description\": \"show\",\n    \"filename\": \"video_1\",\n    \"url\": \"http://localhost.com\",\n    \"isPublished\": true,\n    \"tags\": [\n        \"show\",\n        \"ensaio\"\n    ]\n}]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/videos/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"videos",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/videos/65d50818b0d5d99064588f49",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"videos",
+								"65d50818b0d5d99064588f49"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"AAEEEE\",\n    \"description\": \"show!2 ewq ewq\",\n    \"filename\": \"photo_1 ewq 321321321321\",\n    \"url\": \"http://localhost.com.us\",\n    \"isPublished\": true,\n    \"tags\": [\n        \"show\",\n        \"ewqewqewqewewq\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/videos/65d50818b0d5d99064588f49",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"videos",
+								"65d50818b0d5d99064588f49"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/videos/65d50e640e238bd2c8f50839",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"videos",
+								"65d50e640e238bd2c8f50839"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "HealthCheck",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/auth/health",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"auth",
+						"health"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "PHOTOGRAPHER_PAGE",
+			"value": "http://localhost:4001"
+		},
+		{
+			"key": "access_token",
+			"value": ""
+		},
+		{
+			"key": "JWT_TOKEN",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.{{PHOTOGRAPHER_PAGE}}.-YdvOiefk1Qvk_VlIeGfpQ9RzUF9Z8toFxeTrVtPxjo"
+		}
+	]
+}
