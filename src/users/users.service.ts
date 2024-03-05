@@ -40,6 +40,8 @@ export class UsersService {
   }
 
   update(email: string, updateUserDto: UpdateUserDto) {
+    const hashedPassword = bcrypt.hashSync(updateUserDto.password, 10);
+
     return this.userModel
       .updateOne(
         {
@@ -47,8 +49,8 @@ export class UsersService {
         },
         {
           $set: {
-            name: updateUserDto.name,
-            password: updateUserDto.password,
+            ...updateUserDto,
+            password: hashedPassword,
           },
         },
       )
