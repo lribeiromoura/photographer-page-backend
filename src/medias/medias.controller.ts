@@ -11,6 +11,7 @@ import {
 import { MediasService } from './medias.service';
 import { CreateMediaDto } from './dto/create-media.dto';
 import { UpdateMediaDto } from './dto/update-media.dto';
+import { Public } from 'src/auth/public.decorator';
 
 @Controller('medias')
 export class MediasController {
@@ -21,6 +22,7 @@ export class MediasController {
     return this.mediasService.create(createMediaDto);
   }
 
+  @Public()
   @Get('')
   findMediaBySearch(@Req() req) {
     const limit = Number(req.query.limit) || 10;
