@@ -10,6 +10,7 @@ import {
 import { MediatypesService } from './mediatypes.service';
 import { CreateMediatypeDto } from './dto/create-mediatype.dto';
 import { UpdateMediatypeDto } from './dto/update-mediatype.dto';
+import { Public } from 'src/auth/public.decorator';
 
 @Controller('mediatypes')
 export class MediatypesController {
@@ -20,6 +21,7 @@ export class MediatypesController {
     return this.mediatypesService.create(createMediatypeDto);
   }
 
+  @Public()
   @Get()
   findAll() {
     return this.mediatypesService.findAll();
