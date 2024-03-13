@@ -6,6 +6,8 @@ import { AuthModule } from './auth/auth.module';
 import { MediaModule } from './medias/medias.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { TagsModule } from './tags/tags.module';
+import { MediatypesModule } from './mediatypes/mediatypes.module';
 
 @Module({
   imports: [
@@ -16,6 +18,8 @@ import { AppService } from './app.service';
     UsersModule,
     AuthModule,
     MediaModule,
+    TagsModule,
+    MediatypesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
